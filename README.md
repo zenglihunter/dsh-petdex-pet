@@ -53,47 +53,27 @@
 | 奔跑 `running` | 7 | 工具调用、工作流、步骤执行 |
 | 思考 `review` | 8 | 仅预览展示（暂无 DSH 事件映射） |
 
-## 在另一台电脑的 DSH 上安装
+## 安装（DSH web profile）
 
-插件需要装进 DSH 的 **web profile**（默认 `C:\Users\<你>\.dsh\profiles\web\`）。
+本插件仅适用于 **DeepSeek Harness（DSH）**，需装进 DSH 的 **web profile**（默认 `C:\Users\<你>\.dsh\profiles\web\`）。
 
-### 方式一：本地 tgz（最简）
+### 从 GitHub 安装（推荐，一键式）
 
-1. 拿到 `dsh-external-dsh-petdex-pet-<version>.tgz`，拷到目标机器的 profile 目录下；
-2. 编辑该 profile 的 `package.json`：
+1. 打开 web profile 目录，编辑 `package.json`：
    - `dependencies` 增加：
      ```json
-     "@dsh-external/dsh-petdex-pet": "file:./dsh-external-dsh-petdex-pet-0.1.0.tgz"
+     "@dsh-external/dsh-petdex-pet": "github:zenglihunter/dsh-petdex-pet"
      ```
    - `dsh.profile.bundles` 数组末尾增加 `"@dsh-external/dsh-petdex-pet"`；
-3. 在 profile 目录运行 `pnpm install`（或 `npm install`）；
-4. 重启 DSH。设置页会出现「宠物」项，右下角出现宠物。
+2. 在该目录运行 `pnpm install`（或 `npm install`）；
+3. 重启 DSH。设置页出现「宠物」项，右下角出现宠物。
 
-> 插件的 `cordis.patch.yml` 会由 DSH 自动组合（`dsh.bundle.patch`），**不需要**手动改 profile 的 `cordis.patch.yml`。
+> `cordis.patch.yml` 会由 DSH 自动组合（`dsh.bundle.patch`），无需手动改 profile 的 `cordis.patch.yml`。
 
-### 方式二：GitHub / 自建源（推荐开源分发）
+### 其他方式（可选）
 
-1. 把本仓库推到 GitHub（例如 `<user>/dsh-petdex-pet`）；
-2. 目标机器 profile 的 `dependencies` 增加：
-   ```json
-   "@dsh-external/dsh-petdex-pet": "github:<user>/dsh-petdex-pet"
-   ```
-3. 同样在 `dsh.profile.bundles` 加入 `"@dsh-external/dsh-petdex-pet"`，`pnpm install` 后重启 DSH。
-
-### 方式三：npm 发布
-
-把 `package.json` 的 `name` 改成自己的 scope（如 `@<你的用户名>/dsh-petdex-pet`）或无 scope 名，然后 `npm publish`。
-目标机器依赖直接写 `"dsh-petdex-pet": "^0.1.0"` 即可。
-
-## 打包插件包
-
-在插件目录执行：
-
-```bash
-npm pack
-```
-
-生成 `dsh-external-dsh-petdex-pet-<version>.tgz`（包含 `lib/`、`cordis.patch.yml`、`README.md`、`LICENSE`）。
+- **本地 tgz**：在插件目录 `npm pack` 生成 `dsh-external-dsh-petdex-pet-<version>.tgz`，拷到 profile 目录，依赖写 `"@dsh-external/dsh-petdex-pet": "file:./xxx.tgz"`。
+- **npm 发布**：把 `package.json` 的 `name` 改成自己的 scope，再 `npm publish`，目标机器直接依赖包名即可。
 
 ## 数据与兼容
 

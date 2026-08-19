@@ -60,47 +60,27 @@ so a fresh machine gets pets immediately, no need to add them one by one from th
 | running | 7 | Tool call, workflow, step execution |
 | review | 8 | Preview only (no DSH event mapping yet) |
 
-## Installing on another machine's DSH
+## Installation (DSH web profile)
 
-The plugin must be installed into DSH's **web profile** (default `C:\Users\<you>\.dsh\profiles\web\`).
+This plugin is for **DeepSeek Harness (DSH)** only and must be installed into DSH's **web profile** (default `C:\Users\<you>\.dsh\profiles\web\`).
 
-### Method 1: Local tgz (simplest)
+### Install from GitHub (recommended, one-step)
 
-1. Get `dsh-external-dsh-petdex-pet-<version>.tgz` and copy it into the target machine's profile directory;
-2. Edit that profile's `package.json`:
+1. Open the web profile directory and edit `package.json`:
    - Add to `dependencies`:
      ```json
-     "@dsh-external/dsh-petdex-pet": "file:./dsh-external-dsh-petdex-pet-0.1.0.tgz"
+     "@dsh-external/dsh-petdex-pet": "github:zenglihunter/dsh-petdex-pet"
      ```
    - Append `"@dsh-external/dsh-petdex-pet"` to the `dsh.profile.bundles` array;
-3. Run `pnpm install` (or `npm install`) in the profile directory;
-4. Restart DSH. A "Pets" item appears in settings and the pet shows up in the bottom-right.
+2. Run `pnpm install` (or `npm install`) in that directory;
+3. Restart DSH. A "Pets" item appears in settings and the pet shows up in the bottom-right.
 
-> DSH auto-combines the plugin's `cordis.patch.yml` via `dsh.bundle.patch` — **no manual edit** to the profile's `cordis.patch.yml` is needed.
+> DSH auto-combines the plugin's `cordis.patch.yml` via `dsh.bundle.patch` — no manual edit to the profile's `cordis.patch.yml` is needed.
 
-### Method 2: GitHub / self-hosted source (recommended for open-source distribution)
+### Other methods (optional)
 
-1. Push this repo to GitHub (e.g. `<user>/dsh-petdex-pet`);
-2. Add to the target machine's profile `dependencies`:
-   ```json
-   "@dsh-external/dsh-petdex-pet": "github:<user>/dsh-petdex-pet"
-   ```
-3. Also add `"@dsh-external/dsh-petdex-pet"` to `dsh.profile.bundles`, then `pnpm install` and restart DSH.
-
-### Method 3: npm publish
-
-Change `package.json`'s `name` to your own scope (e.g. `@<your-username>/dsh-petdex-pet`) or a non-scoped name, then `npm publish`.
-The target machine can then depend on `"dsh-petdex-pet": "^0.1.0"` directly.
-
-## Packaging the plugin
-
-In the plugin directory run:
-
-```bash
-npm pack
-```
-
-This generates `dsh-external-dsh-petdex-pet-<version>.tgz` (includes `lib/`, `cordis.patch.yml`, `README.md`, `LICENSE`).
+- **Local tgz**: run `npm pack` in the plugin directory to generate `dsh-external-dsh-petdex-pet-<version>.tgz`, copy it into the profile directory, and set the dependency to `"@dsh-external/dsh-petdex-pet": "file:./xxx.tgz"`.
+- **npm publish**: change `package.json`'s `name` to your own scope, run `npm publish`, and depend on the package name directly on the target machine.
 
 ## Data & compatibility
 
