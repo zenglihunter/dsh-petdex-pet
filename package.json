@@ -1,6 +1,6 @@
 {
   "name": "@dsh-external/dsh-petdex-pet",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
   "description": "Petdex pet in the DSH web GUI: floating bottom-right, draggable, sprite-animated by agent activity, with a live settings page (size / enable / switch / delete / gallery search + previews / install-by-code) and hover interactions. Ships with 4 bundled Hunter x Hunter starter pets (Gon, Killua, Kurapika, Leorio).",
   "main": "lib/index.js",
