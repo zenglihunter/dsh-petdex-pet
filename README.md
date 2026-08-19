@@ -6,9 +6,13 @@
 
 纯浏览器端渲染，**无需安装 Petdex 桌面端**；宠物数据读取 `~/.petdex/pets/`，与桌面端兼容共享。
 
-![dsh-petdex-pet 界面预览](img/screenshot.png)
+![dsh-petdex-pet 主界面 - 宠物菜单可预览 4 个默认猎人主角](img/screenshot.png)
 
-> 界面预览截图待补充。
+更多界面截图：
+
+| 宠物菜单 | 一键安装 & 在线获取宠物 |
+| --- | --- |
+| ![宠物菜单](img/menu.png) | ![一键安装和在线获取宠物](img/install.png) |
 
 ## 内置宠物（开箱即用）
 
