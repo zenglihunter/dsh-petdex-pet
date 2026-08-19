@@ -41,7 +41,7 @@ so a fresh machine gets pets immediately, no need to add them one by one from th
 
 - 🐾 Bottom-right floating pet: draggable, click to expand the menu; the status bar syncs with DSH activity
   (tool calls, task completion, waiting for approval, failure, etc.), and auto-hides after 5 seconds of the same state.
-- ✨ Interaction animations: waves hello on mouse hover; auto-cycles left/right running directions while running.
+- ✨ Interaction animations: on hover, randomly waves hello or shows the thinking pose; auto-cycles left/right running directions while running.
 - ⚙️ Settings → Pets (standalone settings page):
   - Adjust pet size (40%–150%) and enable/disable
   - My Pets: thumbnail list, one-click switch, 🗑 delete
@@ -57,12 +57,12 @@ so a fresh machine gets pets immediately, no need to add them one by one from th
 | idle | 0 | No activity |
 | running-right | 1 | Cycles while running |
 | running-left | 2 | Cycles while running |
-| waving | 3 | Task complete / hover interaction |
+| waving | 3 | Task complete / hover interaction (random) |
 | jumping | 4 | Task execution starts |
 | failed | 5 | Task failed |
 | waiting | 6 | Waiting for approval / blocked |
 | running | 7 | Tool call, workflow, step execution |
-| review | 8 | Preview only (no DSH event mapping yet) |
+| review | 8 | Random on hover (no DSH event mapping yet) |
 
 ## Installation (DSH web profile)
 
