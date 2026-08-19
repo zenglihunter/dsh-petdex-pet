@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="img/banner.jpg" alt="dsh-petdex-pet · Pixel Adventure: Hunter × Hunter & DeepSeek">
+</p>
+
 📖 English documentation: README_EN.md
 
 # dsh-petdex-pet
