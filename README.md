@@ -1,3 +1,5 @@
+📖 English documentation: README_EN.md
+
 # dsh-petdex-pet
 
 把 [Petdex](https://petdex.dev/) 桌面宠物带进 **DeepSeek Harness Web 界面**：
