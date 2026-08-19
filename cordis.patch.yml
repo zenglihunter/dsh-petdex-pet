@@ -1,0 +1,6 @@
+# dsh-petdex-pet bundle patch: mounts the petdex pet (Node half reads pets from
+# ~/.petdex/pets/ and derives state from session events; client half renders the
+# floating sprite via client-modules __ModuleLoader__).
+- insert:
+    - id: dsh-petdex-pet
+      name: '@dsh-external/dsh-petdex-pet'
