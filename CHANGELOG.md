@@ -5,6 +5,14 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.3.1] - 2026-09-24
+
+### 修复
+
+- 适配 DSH 0.1.7：client 端 `inject` 不再声明 `settingsScope`（该服务在 0.1.7 中已被移除，新 API 为 `configForms`）
+  - 本插件的设置面板一直走自身 HTTP API，client 半从未真正使用 `settingsScope`，移除声明后旧版 DSH 同样正常
+  - 此前在 DSH 0.1.7-rc.1 上会因等待不存在的服务导致插件永远 pending、无法激活
+
 ## [0.3.0] - 2026-08-19
 
 ### 新增
