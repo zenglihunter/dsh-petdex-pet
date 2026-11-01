@@ -5,6 +5,15 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.3.2] - 2026-09-30
+
+### 修复
+
+- 适配 DSH 0.2.0：设置页的「宠物」入口不再消失（此前只在 `settings.section` 已被声明时才注册成功）
+  - 根因：`settings.section` 由 `ui-settings-general` 在注册侧边栏外壳时才声明，而它何时激活由自身的 `inject` 集合决定，所以直接调用 `slots.register()` 的成败完全取决于激活顺序。0.2.0 给 `ui-settings-general` 的 `inject` 加了 `shortcuts`（要先等 `ui-shortcuts` 提供服务），声明因此变晚；本插件只依赖 `slots`，会先激活，注册被 `slot "settings.section" is not declared` 拒绝并被 `try/catch` 吞掉，设置页静默少一项
+  - 修法：改走声明感知的 `ctx.slots.inject('settings.section', …)`——声明已存在时立即注册，否则等声明出现后自动注册，声明消失时自动注销。两种顺序都正确，0.1.7 与 0.2.0 均为同一份代码，无需分叉
+  - 顺带修正宠物根节点上的 `data-card-state` 诊断属性：它此前用「register 是否返回 disposer」判断，而 `inject` 在等待期间也会返回停止函数，会把未挂载误报为 `ok`；现在按真实挂载状态更新
+
 ## [0.3.1] - 2026-09-24
 
 ### 修复

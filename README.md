@@ -90,6 +90,11 @@
 - `lib/index.js` — DSH 服务端半部：路由（状态/宠物/图库/安装/删除/预览代理/SSE）、会话事件 → 宠物状态机、设置持久化（owner 侧 settings scope）；
 - `lib/client.js` — 浏览器端 bundle（`__ModuleLoader__` 格式）：悬浮宠物渲染/动画/拖拽/悬停、设置 → 宠物页面（slots 注册 `settings.section`）。
 
+> 「设置 → 宠物」入口走 `ctx.slots.inject('settings.section', …)`（声明感知），不是裸 `slots.register()`：
+> `settings.section` 由 `ui-settings-general` 在注册侧边栏外壳时才声明，裸注册的成败取决于插件激活顺序
+> （DSH 0.2.0 调整 roster 顺序后本插件先激活，注册会被 `slot is not declared` 拒绝，设置页静默少一项）。
+> `inject` 会在声明出现时自动补挂、消失时自动注销，因此 0.1.7 与 0.2.0 共用同一份代码。
+
 > 注意：客户端改动走 DSH 的 client HMR（stat-poll + SSE），改 `lib/client.js` 保存即热更新；改 `lib/index.js` 需要重启 DSH 生效。
 
 ## 致谢
